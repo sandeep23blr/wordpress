@@ -2,29 +2,40 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                // Checkout the HTML code from GitHub
+                // Cloning your GitHub repository
                 git 'https://github.com/Naveen77029/wordpress.git'
             }
         }
 
-        stage('Deploy') {
+        stage('Build Docker Image') {
             steps {
-                // Copy index.html to the project path
-                sh 'cp index.html /var/www/html/wordpress/' // Update this to your exact project path
+                script {
+                    // Build Docker image with the tag 'my-nginx-site'
+                    sh 'docker build -t my-nginx-site .'
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Stop the old container if running
+                    sh 'docker stop my-nginx-container || true'
+                    sh 'docker rm my-nginx-container || true'
+
+                    // Run the new container on port 8081 (to avoid conflict with Jenkins on port 8080)
+                    sh 'docker run -d -p 8081:80 --name my-nginx-container my-nginx-site'
+                }
             }
         }
     }
 
     post {
-        success {
-            echo 'Deployment of index.html successful!'
-        }
-        failure {
-            echo 'Deployment of index.html failed.'
+        always {
+            // Archive the HTML file for reference in Jenkins
+            archiveArtifacts artifacts: 'index.html', onlyIfSuccessful: true
         }
     }
-}
-
 }
