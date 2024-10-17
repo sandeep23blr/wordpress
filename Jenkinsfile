@@ -25,7 +25,7 @@ pipeline {
                     sh 'docker stop my-nginx-container || true'
                     sh 'docker rm my-nginx-container || true'
 
-                    // Run the new container on port 8081 (to avoid conflict with Jenkins on port 8080)
+                    // Run the new container on port 8081
                     sh 'docker run -d -p 8081:80 --name my-nginx-container my-nginx-site'
                 }
             }
