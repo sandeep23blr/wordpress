@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Cloning your GitHub repository
+                // Cloning your public GitHub repository
                 git 'https://github.com/Naveen77029/wordpress.git'
             }
         }
@@ -30,18 +30,25 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy Using Docker') {
+            steps {
+                script {
+                    // Optional: you can repeat the deployment here if needed
+                    sh '''
+                    docker stop my-nginx-container || true
+                    docker rm my-nginx-container || true
+                    docker run -d -p 8081:80 --name my-nginx-container my-nginx-site
+                    '''
+                }
+            }
+        }
     }
 
     post {
         always {
             // Archive the HTML file for reference in Jenkins
             archiveArtifacts artifacts: 'index.html', onlyIfSuccessful: true
-        }
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed. Please check the logs.'
         }
     }
 }
