@@ -18,12 +18,12 @@ pipeline {
                                 git clone https://github.com/sandeep23blr/wordpress.git .
                             fi
 
-                            # Ensure the start script exists, then run it
+                            # Check if the start script exists, if not, provide an error message
                             if [ -f ./start_application.sh ]; then
                                 chmod +x ./start_application.sh
                                 ./start_application.sh
                             else
-                                echo "Application start script not found."
+                                echo "Error: Application start script './start_application.sh' not found."
                                 exit 1
                             fi
                         EOF
@@ -48,12 +48,12 @@ pipeline {
                                 git clone https://github.com/sandeep23blr/wordpress.git .
                             fi
 
-                            # Ensure the start script exists, then run it
+                            # Check if the start script exists, if not, provide an error message
                             if [ -f ./start_application.sh ]; then
                                 chmod +x ./start_application.sh
                                 ./start_application.sh
                             else
-                                echo "Application start script not found."
+                                echo "Error: Application start script './start_application.sh' not found."
                                 exit 1
                             fi
                         EOF
