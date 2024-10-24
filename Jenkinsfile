@@ -7,7 +7,7 @@ pipeline {
                 sshagent(['SSHtoken']) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no ec2-user@13.127.81.47 << EOF
-                        cd /path/to/your/application
+                        cd Jenkinsfile
                         ./start_application.sh
                         EOF
                     '''
@@ -20,7 +20,7 @@ pipeline {
                 sshagent(['SSHtoken']) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no ec2-user@43.204.149.185 << EOF
-                        cd /path/to/your/application
+                        cd Jenkinsfile
                         ./start_application.sh
                         EOF
                     '''
