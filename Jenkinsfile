@@ -6,10 +6,26 @@ pipeline {
             steps {
                 sshagent(['SSHtoken']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ec2-user@13.127.81.47 << EOF
-                        cd /path/to/your/application || mkdir -p /path/to/your/application && cd /path/to/your/application
-    git clone https://github.com/sandeep23blr/wordpress.git  . || git pull origin main
-    ./start_application.sh
+                        ssh -o StrictHostKeyChecking=no ec2-user@13.127.81.47 << 'EOF'
+                            # Ensure the directory exists or create it
+                            mkdir -p /home/ec2-user/application
+                            cd /home/ec2-user/application
+
+                            # If git repo exists, pull the latest changes; if not, clone it
+                            if [ -d ".git" ]; then
+                                git pull origin main
+                            else
+                                git clone https://github.com/sandeep23blr/wordpress.git .
+                            fi
+
+                            # Ensure the start script exists, then run it
+                            if [ -f ./start_application.sh ]; then
+                                chmod +x ./start_application.sh
+                                ./start_application.sh
+                            else
+                                echo "Application start script not found."
+                                exit 1
+                            fi
                         EOF
                     '''
                 }
@@ -20,11 +36,26 @@ pipeline {
             steps {
                 sshagent(['SSHtoken']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ec2-user@43.204.149.185 << EOF
-                        cd /path/to/your/application || mkdir -p /path/to/your/application && cd /path/to/your/application
-    git clone https://github.com/sandeep23blr/wordpress.git . || git pull origin main
-    ./start_application.sh
-EOF
+                        ssh -o StrictHostKeyChecking=no ec2-user@43.204.149.185 << 'EOF'
+                            # Ensure the directory exists or create it
+                            mkdir -p /home/ec2-user/application
+                            cd /home/ec2-user/application
+
+                            # If git repo exists, pull the latest changes; if not, clone it
+                            if [ -d ".git" ]; then
+                                git pull origin main
+                            else
+                                git clone https://github.com/sandeep23blr/wordpress.git .
+                            fi
+
+                            # Ensure the start script exists, then run it
+                            if [ -f ./start_application.sh ]; then
+                                chmod +x ./start_application.sh
+                                ./start_application.sh
+                            else
+                                echo "Application start script not found."
+                                exit 1
+                            fi
                         EOF
                     '''
                 }
