@@ -21,6 +21,11 @@ pipeline {
                                     git clone https://github.com/sandeep23blr/wordpress.git .
                                 fi
 
+                                # Check for the existence of the emoji release script
+                                if [ ! -f wp-includes/js/wp-emoji-release.min.js ]; then
+                                    echo "Warning: wp-emoji-release.min.js not found. Please check your installation."
+                                fi
+
                                 # Check if the application is already running and kill it if necessary
                                 if pgrep -f "php -S 0.0.0.0:8000"; then
                                     echo "Stopping existing application..."
@@ -57,6 +62,11 @@ pipeline {
                                     git pull origin main
                                 else
                                     git clone https://github.com/sandeep23blr/wordpress.git .
+                                fi
+
+                                # Check for the existence of the emoji release script
+                                if [ ! -f wp-includes/js/wp-emoji-release.min.js ]; then
+                                    echo "Warning: wp-emoji-release.min.js not found. Please check your installation."
                                 fi
 
                                 # Check if the application is already running and kill it if necessary
