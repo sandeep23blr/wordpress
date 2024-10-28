@@ -86,13 +86,6 @@ pipeline {
                             fi
 
                             # Start the application using a built-in command (e.g., Apache, Nginx, or another command based on your setup)
-                            # Assuming a web application that runs on a web server, you might need to use:
-                            # For example, if it's a PHP application:
-                            # sudo systemctl restart httpd  # For Apache
-                            # or
-                            # sudo systemctl restart nginx    # For Nginx
-
-                            # If you need to run a specific command, replace the line below:
                             echo "Deploying application..."
                             
                             # Uncomment and modify this line according to your application's requirements
