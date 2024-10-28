@@ -7,7 +7,7 @@ pipeline {
             steps {
                 sshagent(['SSHtoken']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ec2-user@13.127.81.47 << 'EOF'
+                        ssh -o StrictHostKeyChecking=no ec2-user@13.201.137.23 << 'EOF'
                             # Ensure the directory exists or create it
                             mkdir -p /home/ec2-user/application
                             cd /home/ec2-user/application
