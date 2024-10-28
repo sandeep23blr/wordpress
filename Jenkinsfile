@@ -60,13 +60,13 @@ pipeline {
                             fi
 
                             # Check if the application is already running and kill it if necessary
-                            if pgrep -f "php -S 0.0.0.0:8000"; then
+                            if pgrep -f "php -S 0.0.0.0:8001"; then
                                 echo "Stopping existing application..."
-                                pkill -f "php -S 0.0.0.0:8000"
+                                pkill -f "php -S 0.0.0.0:8001"
                             fi
 
                             # Run the application using PHP
-                            nohup php -S 0.0.0.0:8000 &
+                            nohup php -S 0.0.0.0:8001 &
 
                             echo "Application started."
                             EOF
