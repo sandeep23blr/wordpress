@@ -15,9 +15,16 @@ pipeline {
 
                                 # If git repo exists, pull the latest changes; if not, clone it
                                 if [ -d ".git" ]; then
+                                    git config pull.rebase false  # Prevent divergent branches error
                                     git pull origin main
                                 else
                                     git clone https://github.com/sandeep23blr/wordpress.git .
+                                fi
+
+                                # Check if the application is already running and kill it if necessary
+                                if pgrep -f "php -S 0.0.0.0:8000"; then
+                                    echo "Stopping existing application..."
+                                    pkill -f "php -S 0.0.0.0:8000"
                                 fi
 
                                 # Run the application using PHP
@@ -46,9 +53,16 @@ pipeline {
 
                                 # If git repo exists, pull the latest changes; if not, clone it
                                 if [ -d ".git" ]; then
+                                    git config pull.rebase false  # Prevent divergent branches error
                                     git pull origin main
                                 else
                                     git clone https://github.com/sandeep23blr/wordpress.git .
+                                fi
+
+                                # Check if the application is already running and kill it if necessary
+                                if pgrep -f "php -S 0.0.0.0:8000"; then
+                                    echo "Stopping existing application..."
+                                    pkill -f "php -S 0.0.0.0:8000"
                                 fi
 
                                 # Run the application using PHP
