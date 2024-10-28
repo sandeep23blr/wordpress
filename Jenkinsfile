@@ -20,14 +20,15 @@ pipeline {
                                     git clone https://github.com/sandeep23blr/wordpress.git .
                                 fi
 
-                                # Check if the start script exists, if not, provide an error message
-                                if [ -f ./start_application.sh ]; then
-                                    chmod +x ./start_application.sh
-                                    ./start_application.sh
-                                else
-                                    echo "Error: Application start script './start_application.sh' not found."
-                                    exit 1
-                                fi
+                                # Assuming you want to run the application using a command, replace with the actual command
+                                # For example, if it's a PHP application:
+                                nohup php -S 0.0.0.0:8000 &
+
+                                # Or if it's a Node.js application:
+                                # nohup node app.js &
+
+                                # Add any other commands necessary to run your application
+                                echo "Application started."
                             EOF
                         '''
                         // Execute the command
@@ -55,14 +56,15 @@ pipeline {
                                     git clone https://github.com/sandeep23blr/wordpress.git .
                                 fi
 
-                                # Check if the start script exists, if not, provide an error message
-                                if [ -f ./start_application.sh ]; then
-                                    chmod +x ./start_application.sh
-                                    ./start_application.sh
-                                else
-                                    echo "Error: Application start script './start_application.sh' not found."
-                                    exit 1
-                                fi
+                                # Assuming you want to run the application using a command, replace with the actual command
+                                # For example, if it's a PHP application:
+                                nohup php -S 0.0.0.0:8000 &
+
+                                # Or if it's a Node.js application:
+                                # nohup node app.js &
+
+                                # Add any other commands necessary to run your application
+                                echo "Application started."
                             EOF
                         '''
                         // Execute the command
