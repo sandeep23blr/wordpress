@@ -85,12 +85,14 @@ pipeline {
                                 git clone https://github.com/sandeep23blr/wordpress.git .
                             fi
 
-                            # Start the application using a built-in command (e.g., Apache, Nginx, or another command based on your setup)
+                            # Deployment process
                             echo "Deploying application..."
                             
-                            # Uncomment and modify this line according to your application's requirements
-                            # e.g., if you are using a built-in PHP server for WordPress, you might run:
-                            # php -S 0.0.0.0:8000 &
+                            # Here, add commands necessary for starting the application
+                            # For example, if you're using a web server, start it here
+                            # Uncomment and modify the line below based on your setup
+                            # e.g., start web server command like:
+                            # nohup php -S 0.0.0.0:8000 &
 
                             echo "Deployment completed."
                         EOF
