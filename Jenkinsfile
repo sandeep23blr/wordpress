@@ -14,10 +14,12 @@ pipeline {
                             mkdir -p /home/ec2-user/application
                             cd /home/ec2-user/application
 
-                            # Pull the latest changes from the Git repository
+                            # Check if .git directory exists
                             if [ -d ".git" ]; then
+                                echo "Updating application from repository..."
                                 git pull origin main
                             else
+                                echo "Cloning repository..."
                                 git clone https://github.com/sandeep23blr/wordpress.git .
                             fi
 
