@@ -27,7 +27,7 @@ pipeline {
                         # Add your commands to start the application here
                         echo "Deployment completed."
                         EOF
-                    '''
+                    """
                 }
             }
         }
