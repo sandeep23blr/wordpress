@@ -20,14 +20,9 @@ pipeline {
                                     git clone https://github.com/sandeep23blr/wordpress.git .
                                 fi
 
-                                # Assuming you want to run the application using a command, replace with the actual command
-                                # For example, if it's a PHP application:
+                                # Run the application using PHP
                                 nohup php -S 0.0.0.0:8000 &
 
-                                # Or if it's a Node.js application:
-                                # nohup node app.js &
-
-                                # Add any other commands necessary to run your application
                                 echo "Application started."
                             EOF
                         '''
@@ -56,14 +51,9 @@ pipeline {
                                     git clone https://github.com/sandeep23blr/wordpress.git .
                                 fi
 
-                                # Assuming you want to run the application using a command, replace with the actual command
-                                # For example, if it's a PHP application:
+                                # Run the application using PHP
                                 nohup php -S 0.0.0.0:8000 &
 
-                                # Or if it's a Node.js application:
-                                # nohup node app.js &
-
-                                # Add any other commands necessary to run your application
                                 echo "Application started."
                             EOF
                         '''
