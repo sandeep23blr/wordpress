@@ -9,6 +9,7 @@ COPY . .
 
 # Expose port 80
 EXPOSE 80
+Expose 81
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
