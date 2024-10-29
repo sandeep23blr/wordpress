@@ -53,7 +53,7 @@ pipeline {
                     script {
                         // Define the SSH command for Instance 2
                         def deployCommand2 = '''
-                            ssh -o StrictHostKeyChecking=no ec2-user@3.110.153.6 << 'EOF'
+                            ssh -o StrictHostKeyChecking=no ec2-user@65.2.79.181 << 'EOF'
                             # Ensure the directory exists or create it
                             mkdir -p /home/ec2-user/application
                             cd /home/ec2-user/application
