@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Deploy to Instance 1') {
+        stage('Deploy to Instance 2') {
             steps {
                 sshagent(['SSHtoken']) {
                     script {
-                        // Define the SSH command for Instance 1
+                        // Define the SSH command for Instance 2
                         def deployCommand1 = '''
                             ssh -o StrictHostKeyChecking=no ec2-user@3.110.153.6 << 'EOF'
                             # Ensure the directory exists or create it
@@ -37,7 +37,7 @@ pipeline {
                                 exit 1
                             fi
 
-                            echo "Application started on Instance 1."
+                            echo "Application started on Instance 2."
                             EOF
                         '''
                         // Execute the command
@@ -47,11 +47,11 @@ pipeline {
             }
         }
 
-        stage('Deploy to Instance 2') {
+        stage('Deploy to Instance 1') {
             steps {
                 sshagent(['SSHtoken']) {
                     script {
-                        // Define the SSH command for Instance 2
+                        // Define the SSH command for Instance 1
                         def deployCommand2 = '''
                             ssh -o StrictHostKeyChecking=no ec2-user@65.2.79.181 << 'EOF'
                             # Ensure the directory exists or create it
@@ -82,7 +82,7 @@ pipeline {
                                 exit 1
                             fi
 
-                            echo "Application started on Instance 2."
+                            echo "Application started on Instance 1."
                             EOF
                         '''
                         // Execute the command
