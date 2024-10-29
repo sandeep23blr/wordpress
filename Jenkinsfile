@@ -69,7 +69,7 @@ pipeline {
                             # Check if the application is already running and kill it if necessary
                             if pgrep -f "php -S 0.0.0.0:8001"; then
                                 echo "Stopping existing application..."
-                                pkill -f "php -S 0.0.0.0:8000"
+                                pkill -f "php -S 0.0.0.0:8001"
                             fi
 
                             # Run the application using PHP
@@ -77,7 +77,7 @@ pipeline {
 
                             # Optional: Add a check to confirm the server is running
                             sleep 5  # Wait for a few seconds
-                            if ! pgrep -f "php -S 0.0.0.0:8000"; then
+                            if ! pgrep -f "php -S 0.0.0.0:8001"; then
                                 echo "Failed to start the application."
                                 exit 1
                             fi
